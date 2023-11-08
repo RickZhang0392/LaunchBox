@@ -1,0 +1,364 @@
+﻿<Window x:Class="LaunchBox.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaunchBox"
+        mc:Ignorable="d"
+        Title="SettingWindow" Height="540" Width="960" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="Black" Opacity="0.5"></SolidColorBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                <Image Width="20" Height="20" Source="pack://application:,,,/Images/settings_fff.png" VerticalAlignment="Center"></Image>
+                <TextBlock x:Name="Title" Text="SETTINGS" Foreground="White" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="30" Height="30" Focusable="False" Cursor="Hand" Click="Button_Click_2">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="grd" Background="Transparent">
+                                <Grid>
+                                    <Line x:Name="grd_line1" Width="10" Height="10" X1="0" Y1="0" X2="10" Y2="10" Stroke="#fff" StrokeThickness="1"></Line>
+                                    <Line x:Name="grd_line2" Width="10" Height="10" X1="10" Y1="0" X2="0" Y2="10" Stroke="#fff" StrokeThickness="1"></Line>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="grd" Property="Background" Value="#ff0000"></Setter>
+                                    <Setter TargetName="grd_line1" Property="Stroke" Value="#fff"></Setter>
+                                    <Setter TargetName="grd_line2" Property="Stroke" Value="#fff"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10,2,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32*"></ColumnDefinition>
+                <ColumnDefinition Width="68*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/info.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="APP INFORMATION" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/name.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="APP NAME:" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="AppName_TextBox" Foreground="White" Text="[APP NAME]" VerticalContentAlignment="Center" Height="30" Background="Transparent" BorderThickness="0" IsReadOnly="True" CaretBrush="White"></TextBox>
+                    </Grid>
+                    <!--<Grid Grid.Row="1" Grid.Column="2">
+                        <Image Width="16" Height="16" Cursor="Hand" Source="pack://application:,,,/Images/edit_fff.png" VerticalAlignment="Center" HorizontalAlignment="Right"></Image>
+                    </Grid>-->
+                    <Grid Grid.Row="2" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/attachment.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="APP PATH:" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="AppPath_TextBox" Foreground="White" Text="[APP PATH]" VerticalContentAlignment="Center" Height="30" Background="Transparent" BorderThickness="0" IsReadOnly="True" CaretBrush="White"></TextBox>
+                    </Grid>
+                    <!--<Grid Grid.Row="2" Grid.Column="2">
+                        <Image Width="20" Height="20" Cursor="Hand" Source="pack://application:,,,/Images/browse.png" VerticalAlignment="Center" HorizontalAlignment="Right"></Image>
+                    </Grid>-->
+                    <Grid Grid.Row="3" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/cardn.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="DISPLAY NAME:" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="DisplayName_TextBox" Foreground="White" Text="[DISPLAY NAME]" VerticalContentAlignment="Center" Height="20" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="False" CaretBrush="White" TextChanged="DisplayName_TextBox_TextChanged"></TextBox>
+                    </Grid>
+                    <!--<Grid Grid.Row="3" Grid.Column="2">
+                        <Image x:Name="Display_Edit_Button" Width="16" Height="16" Cursor="Hand" Source="pack://application:,,,/Images/edit_fff.png" VerticalAlignment="Center" HorizontalAlignment="Right" MouseLeftButtonDown="Display_Edit_Button_MouseLeftButtonDown"></Image>
+                    </Grid>-->
+                    
+                    <Grid Grid.Row="4" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/params.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="PARAMETERS:" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="Params_TextBox" Foreground="White" Text="[APP PARAMETERS]" VerticalContentAlignment="Center" Height="20" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="False" CaretBrush="White" TextChanged="DisplayName_TextBox_TextChanged"></TextBox>
+                    </Grid>
+                    <!--<Grid Grid.Row="4" Grid.Column="2">
+                        <Image Width="16" Height="16" Cursor="Hand" Source="pack://application:,,,/Images/edit_fff.png" VerticalAlignment="Center" HorizontalAlignment="Right"></Image>
+                    </Grid>-->
+                    <Grid Grid.Row="5" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/windows.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="NOWINDOW:" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="5" Grid.Column="1">
+                        <CheckBox x:Name="NoWindow_Checkbox" Foreground="White" VerticalContentAlignment="Center" Height="30" Checked="NoWindow_Checkbox_Checked" Unchecked="NoWindow_Checkbox_Checked"></CheckBox>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid Height="1" Background="White" VerticalAlignment="Center"></Grid>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75*"></ColumnDefinition>
+                        <ColumnDefinition Width="15*"></ColumnDefinition>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <!--<RowDefinition Height="30"></RowDefinition>-->
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/lightening.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="USAGE ALARM" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="Alarm_CPU_Checkbox" Foreground="White" VerticalContentAlignment="Center" VerticalAlignment="Center" Checked="NoWindow_Checkbox_Checked" Unchecked="NoWindow_Checkbox_Checked">CPU USAGE EXCEEDS(%):</CheckBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="Alarm_CPU_TextBox" Foreground="White" Text="50" VerticalContentAlignment="Center" Height="20" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="False" CaretBrush="White" TextChanged="DisplayName_TextBox_TextChanged"></TextBox>
+                    </Grid>
+                    <!--<Grid Grid.Row="1" Grid.Column="2">
+                        <Image Width="16" Height="16" Cursor="Hand" Source="pack://application:,,,/Images/edit_fff.png" VerticalAlignment="Center" HorizontalAlignment="Right"></Image>
+                    </Grid>-->
+                    <Grid Grid.Row="2" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="Alarm_Memory_Checkbox" Foreground="White" VerticalContentAlignment="Center" VerticalAlignment="Center" Checked="NoWindow_Checkbox_Checked" Unchecked="NoWindow_Checkbox_Checked">MEMORY USAGE EXCEEDS(MB):</CheckBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="Alarm_Memory_TextBox" Foreground="White" Text="200" VerticalContentAlignment="Center" Height="20" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="False" CaretBrush="White" TextChanged="DisplayName_TextBox_TextChanged"></TextBox>
+                    </Grid>
+                    <!--<Grid Grid.Row="2" Grid.Column="2">
+                        <Image Width="16" Height="16" Cursor="Hand" Source="pack://application:,,,/Images/edit_fff.png" VerticalAlignment="Center" HorizontalAlignment="Right"></Image>
+                    </Grid>-->
+                    <Grid Grid.Row="3" Grid.Column="0" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="Alarm_Time_Checkbox" Foreground="White" VerticalContentAlignment="Center" VerticalAlignment="Center" Checked="NoWindow_Checkbox_Checked" Unchecked="NoWindow_Checkbox_Checked">TIME USAGE EXCEEDS(MINS):</CheckBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Collapsed">
+                        <TextBox x:Name="Alarm_Time_TextBox" Foreground="White" Text="60" VerticalContentAlignment="Center" Height="20" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="False" CaretBrush="White" TextChanged="DisplayName_TextBox_TextChanged"></TextBox>
+                    </Grid>
+                    <!--<Grid Grid.Row="3" Grid.Column="2">
+                        <Image Width="16" Height="16" Cursor="Hand" Source="pack://application:,,,/Images/edit_fff.png" VerticalAlignment="Center" HorizontalAlignment="Right"></Image>
+                    </Grid>-->
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid Height="1" Background="White" VerticalAlignment="Center"></Grid>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="18" Height="18" Source="pack://application:,,,/Images/notification.png" VerticalAlignment="Center"></Image>
+                            <TextBlock Foreground="White" Text="NOTIFICATIONS" Margin="3,0,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="Notification_Alarm_Checkbox" Foreground="White" VerticalContentAlignment="Center" VerticalAlignment="Center" Checked="NoWindow_Checkbox_Checked" Unchecked="NoWindow_Checkbox_Checked">SEND NOTIFICATION WHEN TRIGGER ALARM</CheckBox>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Margin="10,0,10,0">
+                    <StackPanel Orientation="Horizontal" Height="20" VerticalAlignment="Top">
+                        <TextBlock Text="% CPU USAGE" Foreground="White"></TextBlock>
+                        <TextBlock Text="-" Foreground="White" Margin="10,0,10,0"></TextBlock>
+                        <TextBlock x:Name="CPU_Value" Text="" Foreground="White"></TextBlock>
+                    </StackPanel>
+                    <Grid Margin="0,20,0,0" Opacity="0.5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Height="1" Grid.Row="0" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="1" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="2" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="3" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="4" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="5" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="6" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="7" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="8" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="9" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="9" VerticalAlignment="Bottom" Background="White"></Grid>
+                        <Grid Width="1" Grid.Row="0" Background="White" Grid.RowSpan="10" HorizontalAlignment="Left"></Grid>
+                        <Grid Width="1" Grid.Row="0" Background="White" Grid.RowSpan="10" HorizontalAlignment="Right"></Grid>
+                    </Grid>
+                    <Grid Margin="0,20,0,0" ClipToBounds="True">
+                        <!--<StackPanel  Orientation="Horizontal">
+                            
+                        </StackPanel>-->
+                        <Canvas x:Name="CPU_Chart" SizeChanged="CPU_Chart_SizeChanged">
+
+                        </Canvas>
+                        <Canvas x:Name="CPU_PATH_Canvas">
+                            <Canvas.Background>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStop Color="#55ffffff" Offset="0">
+                                    </GradientStop>
+                                    <GradientStop Color="Transparent" Offset="1"></GradientStop>
+                                </LinearGradientBrush>
+                            </Canvas.Background>
+                            <Canvas.Clip>
+                                <PathGeometry x:Name="CPU_Clip_Geo">
+                                    <PathGeometry.Figures>
+                                        <PathFigureCollection>
+                                            <PathFigure x:Name="CPU_Clip_Figure"></PathFigure>
+                                        </PathFigureCollection>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Canvas.Clip>
+                            <Path x:Name="CPU_Path" Stroke="#fff" StrokeThickness="5">
+                                <Path.Data>
+                                    <PathGeometry x:Name="CPU_Path_Geo">
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure x:Name="CPU_Path_Figure"></PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0" Margin="10,0,10,0">
+                    <StackPanel Orientation="Horizontal" Height="20" VerticalAlignment="Top">
+                        <TextBlock Text="MEMORY USAGE" Foreground="White"></TextBlock>
+                        <TextBlock Text="-" Foreground="White" Margin="10,0,10,0"></TextBlock>
+                        <TextBlock x:Name="Memory_Value" Text="" Foreground="White"></TextBlock>
+                    </StackPanel>
+                    <Grid Margin="0,20,0,0" Opacity="0.5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Height="1" Grid.Row="0" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="1" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="2" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="3" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="4" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="5" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="6" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="7" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="8" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="9" VerticalAlignment="Top" Background="White"></Grid>
+                        <Grid Height="1" Grid.Row="9" VerticalAlignment="Bottom" Background="White"></Grid>
+                        <Grid Width="1" Grid.Row="0" Background="White" Grid.RowSpan="10" HorizontalAlignment="Left"></Grid>
+                        <Grid Width="1" Grid.Row="0" Background="White" Grid.RowSpan="10" HorizontalAlignment="Right"></Grid>
+                    </Grid>
+                    <Grid Margin="0,20,0,0" ClipToBounds="True">
+                        <!--<StackPanel  Orientation="Horizontal">
+                            
+                        </StackPanel>-->
+                        <Canvas x:Name="Memory_Chart" SizeChanged="CPU_Chart_SizeChanged">
+
+                        </Canvas>
+                        <Canvas x:Name="Memory_PATH_Canvas">
+                            <Canvas.Background>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStop Color="#55ffffff" Offset="0">
+                                    </GradientStop>
+                                    <GradientStop Color="Transparent" Offset="1"></GradientStop>
+                                </LinearGradientBrush>
+                            </Canvas.Background>
+                            <Canvas.Clip>
+                                <PathGeometry x:Name="Memory_Clip_Geo">
+                                    <PathGeometry.Figures>
+                                        <PathFigureCollection>
+                                            <PathFigure x:Name="Memory_Clip_Figure"></PathFigure>
+                                        </PathFigureCollection>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Canvas.Clip>
+                            <Path x:Name="Memory_Path" Stroke="#fff" StrokeThickness="5">
+                                <Path.Data>
+                                    <PathGeometry x:Name="Memory_Path_Geo">
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure x:Name="Memory_Path_Figure"></PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

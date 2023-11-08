@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="LaunchBox.UserControls.UserControl_App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LaunchBox.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="Play" UriSource="pack://application:,,,/Images/play.png"></BitmapImage>
+        <BitmapImage x:Key="Pause" UriSource="pack://application:,,,/Images/pause.png"></BitmapImage>
+        <SolidColorBrush x:Key="Active" Color="#1afa29"></SolidColorBrush>
+        <SolidColorBrush x:Key="Deactive" Color="#d81e06"></SolidColorBrush>
+    </UserControl.Resources>
+    <Grid Height="50">
+        <Grid VerticalAlignment="Center" Margin="8,0,6,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Ellipse x:Name="Status_Ellipse" Width="10" Height="10" Fill="{StaticResource Active}" VerticalAlignment="Center"></Ellipse>
+                <Image Width="30" Height="30" Source="{Binding RelativeSource={RelativeSource  Mode= FindAncestor, AncestorType={x:Type local:UserControl_App}}, Path=AppIcon}" Margin="8,0,0,0" VerticalAlignment="Center"></Image>
+                <TextBlock Text="{Binding RelativeSource={RelativeSource  Mode= FindAncestor, AncestorType={x:Type local:UserControl_App}}, Path=AppName}" Foreground="White" Width="120" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"  Margin="8,0,0,0" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Image x:Name="Start_Button" Width="20" Height="20" Source="{StaticResource Play}" VerticalAlignment="Center" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                <Image Width="28" Height="28" Source="pack://application:,,,/Images/settings_fff.png" Cursor="Hand" Margin="6,0,0,0" VerticalAlignment="Center" MouseLeftButtonDown="Image_MouseLeftButtonDown_2"></Image>
+                <Image Width="28" Height="28" Source="pack://application:,,,/Images/delete.png" Margin="4,0,0,0" VerticalAlignment="Center" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown_1"></Image>
+            </StackPanel>
+        </Grid>    
+    </Grid>
+</UserControl>
