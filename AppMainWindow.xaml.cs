@@ -170,41 +170,49 @@ namespace LaunchBox
             List<StoredApplication> applications = ApplicationStorage.Get();
             foreach(var application in applications)
             {
-                var process_name = application.name.Substring(0, application.name.Length - application.extension.Length);
-                var profile = ApplicationProfile.Get(application.id);
-                var element = new UserControls.UserControl_App
+                try
                 {
-                    Status = ProcessUtil.isProcessAlive(process_name) ? Params.ApplicationStatus.START : Params.ApplicationStatus.STOP,
-                    AppIcon = FileInfoUtil.GetIcon(application.path),
-                    AppName = profile == null ? process_name : profile.displayname,
-                    Application = application
-                };
-                element.OnDelete += (s, e) =>
+                    var process_name = application.name.Substring(0, application.name.Length - application.extension.Length);
+                    var profile = ApplicationProfile.Get(application.id);
+                    var element = new UserControls.UserControl_App
+                    {
+                        Status = ProcessUtil.isProcessAlive(process_name) ? Params.ApplicationStatus.START : Params.ApplicationStatus.STOP,
+                        AppIcon = FileInfoUtil.GetIcon(application.path),
+                        AppName = profile == null ? process_name : profile.displayname,
+                        Application = application
+                    };
+                    element.OnDelete += (s, e) =>
+                    {
+                        ApplicationStorage.Remove(application.id);
+                        RefreshApplicationList();
+                    };
+                    element.OnStart += (s, e) =>
+                    {
+                        var noWindow = profile == null ? false : profile.nowindow;
+                        var pms = profile == null ? "" : profile.parameters;
+                        ProcessUtil.StartProcess(application.path.Substring(0, application.path.Length - application.name.Length), application.path, application.extension, noWindow, pms);
+                    };
+                    element.OnStop += (s, e) =>
+                    {
+                        ProcessUtil.KillProcess(application.name.Substring(0, application.name.Length - application.extension.Length));
+                    };
+                    element.OnSetting += (s, e) =>
+                    {
+                        settingWindow = new SettingWindow();
+                        settingWindow.Open(application.id);
+                        settingWindow.OnUpdate += (s2, e2) =>
+                        {
+                            RefreshApplicationList();
+                            element.RefreshProfile();
+                        };
+                    };
+                    Application_List.Children.Add(element);
+                }catch(Exception ex)
                 {
                     ApplicationStorage.Remove(application.id);
                     RefreshApplicationList();
-                };
-                element.OnStart += (s, e) =>
-                {
-                    var noWindow = profile == null ? false : profile.nowindow;
-                    var pms = profile == null ? "" : profile.parameters;
-                    ProcessUtil.StartProcess(application.path.Substring(0, application.path.Length-application.name.Length), application.path, application.extension, noWindow, pms);
-                };
-                element.OnStop += (s, e) =>
-                {
-                    ProcessUtil.KillProcess(application.name.Substring(0, application.name.Length - application.extension.Length));
-                };
-                element.OnSetting += (s, e) =>
-                {
-                    settingWindow = new SettingWindow();
-                    settingWindow.Open(application.id);
-                    settingWindow.OnUpdate += (s2, e2) =>
-                    {
-                        RefreshApplicationList();
-                        element.RefreshProfile();
-                    };
-                };
-                Application_List.Children.Add(element);
+                    return;
+                }
             }
 
             if (applications.Count == 0)
