@@ -15,7 +15,7 @@ Launch box is an application for the user who want to manage their frequenty use
 - Applications that require warning after exceeding cpu or memory usage
 
 # How to use?
-1. Download the released package from [LaunchBox Release](https://github.com/RickZhang0392/LaunchBox/releases/tag/release)
+1. Download the released package from [LaunchBox Release](https://github.com/RickZhang0392/LaunchBox/releases/tag/release-1.1)
 2. Unzip the package and run LaunchBox.exe.
 3. Drag and drop an exe file to the application window
 4. Now, you can see the application in the window. And you can launch the application, see the application's profile or remove the application.
